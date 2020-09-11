@@ -34,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         // Set the gesture detector as the double tap listener.
         mDetector!!.setOnDoubleTapListener(DoubleTapListener())
 
+        val tv = findViewById<TextView>(R.id.event_TV)
         GestureListener.eventHappened.observe(this, { eventHappened:Boolean ->
             Log.d("GestureListener", "eventHappened:$eventHappened")
             if (eventHappened) {
                 var str = GestureListener.getData()
-                val tv = findViewById<TextView>(R.id.event_TV)
                 while (str != null) {
                     tv.update(str!!)
                     str = GestureListener.getData()
@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("GestureListener", "eventHappened:$eventHappened")
             if (eventHappened) {
                 var str = DoubleTapListener.getData()
-                val tv = findViewById<TextView>(R.id.event_TV)
                 while (str != null) {
                     tv.update(str!!)
                     str = DoubleTapListener.getData()
