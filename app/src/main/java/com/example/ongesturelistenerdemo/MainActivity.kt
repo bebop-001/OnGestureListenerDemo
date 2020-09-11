@@ -1,6 +1,22 @@
+/*
+ *  Copyright 2020 Steven Smith kana-tutor.com
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ *  either express or implied.
+ *
+ *  See the License for the specific language governing permissions
+ *  and limitations under the License.
+ */
 package com.example.ongesturelistenerdemo
 
-import SimpleListener
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -20,11 +36,12 @@ class MainActivity : AppCompatActivity() {
 
         fun MotionEvent.toActionString () : String {
             return when (this.actionMasked) {
-                MotionEvent.ACTION_DOWN -> "DOWN"
-                MotionEvent.ACTION_UP -> "UP"
+                MotionEvent.ACTION_DOWN   -> "DOWN"
+                MotionEvent.ACTION_UP     -> "UP"
                 MotionEvent.ACTION_CANCEL -> "CANCEL"
-                MotionEvent.ACTION_MOVE -> "MOVE"
-                else                      -> {"Unexpected action: ${this.actionMasked}"}
+                MotionEvent.ACTION_MOVE   -> "MOVE"
+                else                      -> {
+                    "Unexpected action: ${this.actionMasked}"}
             }
         }
     }
@@ -48,7 +65,8 @@ class MainActivity : AppCompatActivity() {
         // This implements all methods in the OnSimpleListener, OnDoubleTapListener,
         // and OnContextClickListener but does nothing and return false for all
         // applicable methods.
-        simpleDetector = GestureDetectorCompat(applicationContext, SimpleListener())
+        simpleDetector = GestureDetectorCompat(applicationContext,
+            SimpleListener())
         // the onTouch callback is the connection between the view and the
         // listener.  onTouch calls onTouchEvent which is what calls the
         // class callbacks.
@@ -89,7 +107,8 @@ class MainActivity : AppCompatActivity() {
             }
         })
         SimpleListener.eventHappened.observe(this, { eventHappened: Boolean ->
-            Log.d("SimpleListener", "eventHappened:$eventHappened")
+            Log.d("com.example.ongesturelistenerdemo.SimpleListener",
+                "eventHappened:$eventHappened")
             if (eventHappened) {
                 var str = SimpleListener.getData()
                 while (str != null) {

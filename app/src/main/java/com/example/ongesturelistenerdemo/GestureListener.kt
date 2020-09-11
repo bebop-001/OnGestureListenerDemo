@@ -1,3 +1,20 @@
+/*
+ *  Copyright 2020 Steven Smith kana-tutor.com
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *
+ *  You may obtain a copy of the License at
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing,
+ *  software distributed under the License is distributed on an
+ *  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ *  either express or implied.
+ *
+ *  See the License for the specific language governing permissions
+ *  and limitations under the License.
+ */
 package com.example.ongesturelistenerdemo
 
 import android.util.Log
@@ -28,7 +45,8 @@ internal class GestureListener : GestureDetector.OnGestureListener {
                 rv = if (buffer.isNotEmpty()) buffer.removeAt(0)
                 else null
                 _eventHappend.value = buffer.isNotEmpty()
-                Log.d("GestureListener", "eventHappened:getData: ${buffer.size}:${eventHappened.value}")
+                Log.d("GestureListener", "eventHappened:getData: "
+                    + "${buffer.size}:${eventHappened.value}")
             }
             return rv
         }
@@ -49,7 +67,8 @@ internal class GestureListener : GestureDetector.OnGestureListener {
 
     override fun onScroll(e1: MotionEvent, e2: MotionEvent,
                           distanceX: Float, distanceY: Float): Boolean {
-        putData("GestureListener::onScroll: action = ${e1.toActionString()}${e2.toActionString()}:")
+        putData("GestureListener::onScroll: action =  "
+            + "{e1.toActionString()}${e2.toActionString()}:")
         return true
     }
 
@@ -59,7 +78,8 @@ internal class GestureListener : GestureDetector.OnGestureListener {
 
     override fun onFling(event1: MotionEvent, event2: MotionEvent,
                          velocityX: Float, velocityY: Float): Boolean {
-        putData("GestureListener::onFling: action = ${event1.action}${event2.action}:")
+        putData("GestureListener::onFling: action = "
+            + "${event1.action}${event2.action}:")
         return true
     }
 }
